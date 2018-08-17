@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+   
+    <table id="location" border='1'>
+        <tr>
+            <th>First Name</th>
+            <th>Company</th>
+            <th>Designation</th>
+        </tr>
+    </table>
+</body>
+</html>
+<script src="Scripts/jquery-1.10.2.js"></script>
+<script src="Scripts/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:57325/api/test/Getdata",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    debugger;
+                    console.log(data);
+                    var trHTML = '';
+                    trHTML += '<tr><td>' + data.responseJSON[0].Firstname + '</td><td>' + data.responseJSON[0].company + '</td><td>' + data.responseJSON[0].Designation + '</td></tr>';
+
+                    $('#location').append(trHTML);
+
+                },               
+                error: function (data) {
+                    debugger;
+                    console.log(data);
+                    var trHTML = '';
+                    trHTML += '<tr><td>' + data.responseJSON[0].Firstname + '</td><td>' + data.responseJSON[0].company + '</td><td>' + data.responseJSON[0].Designation + '</td></tr>';
+                    $('#location').append(trHTML);
+                } //End of AJAX error function
+
+            });
+        });
+
+</script>
